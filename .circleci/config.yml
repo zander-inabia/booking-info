@@ -7,7 +7,7 @@ jobs:
       - run:
           name: productpage Build and push Docker image
           command: |
-            cd productpage
+            cd src/productpage
             sudo docker build -t haseebh/productpage:${CIRCLE_BUILD_NUM} .
             sudo docker login -u "$username" -p "$password"
             sudo docker push haseebh/productpage:${CIRCLE_BUILD_NUM}
@@ -15,7 +15,7 @@ jobs:
       - run:
           name: ratings Build and push Docker image
           command: |
-            cd ratings
+            cd src/ratings
             sudo docker build -t haseebh/ratings-v1:${CIRCLE_BUILD_NUM} .
             sudo docker login -u "$username" -p "$password"
             sudo docker push haseebh/ratings-v1:${CIRCLE_BUILD_NUM}

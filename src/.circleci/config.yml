@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: productpage Build and push Docker image
+          command: |
+            cd productpage
+            sudo docker build -t haseebh/productpage:${CIRCLE_BUILD_NUM} .
+            sudo docker login -u "$username" -p "$password"
+            sudo docker push haseebh/productpage:${CIRCLE_BUILD_NUM}
+            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image":"haseebh/productpage","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
+      - run:
+          name: ratings Build and push Docker image
+          command: |
+            cd ratings
+            sudo docker build -t haseebh/ratings-v1:${CIRCLE_BUILD_NUM} .
+            sudo docker login -u "$username" -p "$password"
+            sudo docker push haseebh/ratings-v1:${CIRCLE_BUILD_NUM}
+            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image_name":"haseebh/ratings-v1","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment

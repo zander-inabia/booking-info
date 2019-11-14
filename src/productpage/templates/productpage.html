@@ -113,7 +113,7 @@
         <dt>Language:</dt>{{ details.language }}
         <dt>ISBN-10:</dt>{{ details['ISBN-10'] }}
         <dt>ISBN-13:</dt>{{ details['ISBN-13'] }}
-        <dt>Link:</dt><a href={{ purchase['link'] }} target="_blank"></a>
+        <dt>Link:</dt><a href={{ purchase['link'] }} target="_blank">{{ purchase['link'] }}</a>
       </dl>
       {% else %}
       <h4 class="text-center text-primary">Error fetching product details!</h4>

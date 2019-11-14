@@ -61,8 +61,15 @@ servicesDomain = "" if (os.environ.get("SERVICES_DOMAIN") is None) else "." + os
 detailsHostname = "details" if (os.environ.get("DETAILS_HOSTNAME") is None) else os.environ.get("DETAILS_HOSTNAME")
 ratingsHostname = "ratings" if (os.environ.get("RATINGS_HOSTNAME") is None) else os.environ.get("RATINGS_HOSTNAME")
 reviewsHostname = "reviews" if (os.environ.get("REVIEWS_HOSTNAME") is None) else os.environ.get("REVIEWS_HOSTNAME")
+storeHostname = "purchases" if (os.environ.get("PURCHASES_HOSTNAME") is None) else os.environ.get("PURCHASES_HOSTNAME")
 
 flood_factor = 0 if (os.environ.get("FLOOD_FACTOR") is None) else int(os.environ.get("FLOOD_FACTOR"))
+
+purchases = {
+    "name": "http://{0}{1}:9081".format(storeHostname, servicesDomain),
+    "endpoint": "purchase/goodreads",
+    "children": []
+}
 
 details = {
     "name": "http://{0}{1}:9080".format(detailsHostname, servicesDomain),
@@ -259,17 +266,20 @@ def front():
     user = session.get('user', '')
     product = getProduct(product_id)
     detailsStatus, details = getProductDetails(product_id, headers)
-
+    isbn = details['ISBN-10']
+    status, purchase = getPurchaseLink(isbn, headers)
     if flood_factor > 0:
         floodReviews(product_id, headers)
 
     reviewsStatus, reviews = getProductReviews(product_id, headers)
     return render_template(
         'productpage.html',
+
         detailsStatus=detailsStatus,
         reviewsStatus=reviewsStatus,
         product=product,
         details=details,
+        purchase=purchase,
         reviews=reviews,
         user=user)
 
@@ -285,6 +295,7 @@ def productsRoute():
 def productRoute(product_id):
     headers = getForwardHeaders(request)
     status, details = getProductDetails(product_id, headers)
+
     return json.dumps(details), status, {'Content-Type': 'application/json'}
 
 
@@ -335,6 +346,18 @@ def getProductDetails(product_id, headers):
         status = res.status_code if res is not None and res.status_code else 500
         return status, {'error': 'Sorry, product details are currently unavailable for this book.'}
 
+
+def getPurchaseLink(porduct_isbn, headers):
+    try:
+        url = purchases['name'] + "/" + purchases['endpoint'] + "/" + str(porduct_isbn)
+        res = requests.get(url, headers=headers, timeout=3.0)
+    except BaseException:
+        res = None
+    if res and res.status_code == 200:
+        return 200, res.json()
+    else:
+        status = res.status_code if res is not None and res.status_code else 500
+        return status, {'error': 'Sorry, product link is currently unavailable for this book.'}
 
 def getProductReviews(product_id, headers):
     # Do not remove. Bug introduced explicitly for illustration in fault injection task

@@ -5,6 +5,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: purchases Build and push Docker image
+          command: |
+            cd src/purchases
+            sudo docker build -t haseebh/purchases:${CIRCLE_BUILD_NUM} .
+            sudo docker login -u "$username" -p "$password"
+            sudo docker push haseebh/purchases:${CIRCLE_BUILD_NUM}
+            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image_name":"haseebh/purchases","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
+      - run:
           name: productpage Build and push Docker image
           command: |
             cd src/productpage

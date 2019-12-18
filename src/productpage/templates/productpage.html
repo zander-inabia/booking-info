@@ -4,21 +4,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% endblock %}
-​
+
 {% block styles %}
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    ​<link rel="stylesheet" href="static/bootstrap/css/custom.css">
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
 {% endblock %}
 {% block scripts %}
     <!-- Latest compiled and minified JavaScript -->
     <script src="static/jquery.min.js"></script>
-    ​
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    ​
+
     <script type="text/javascript">
         $('#login-modal').on('shown.bs.modal', function () {
             $('#username').focus();
@@ -27,7 +27,7 @@
 {% endblock %}
 {% block title %}Simple Bookstore App{% endblock %}
 {% block content %}
-​
+
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -44,7 +44,7 @@
         {% endif %}
     </div>
 </nav>
-​
+
 <!---
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -69,7 +69,7 @@
   </div>
 </div>
 -->
-​
+
 <div id="login-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -88,13 +88,13 @@
                 </form>
             </div>
         </div>
-        ​
+
     </div>
 </div>
-​
+
 <div class="container">
     <div class="row">
-        <div class="card-top" style=" border-bottom: 2px solid #333;
+        <div class="card-top" style="border-bottom: 2px solid #333;
     padding-left: auto;
     padding-right: auto;
     min-height: 160px;
@@ -104,64 +104,137 @@
     -webkit-transition: .25s box-shadow;
     transition: .25s box-shadow;">
             <div class="col-md-12">
-                <h2 class="text-center text-primary main-heading">{{ product.title }}</h2>
+                <h2 class="text-center text-primary" style="margin-bottom: 20px;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-top: 30px;">{{ product.title }}</h2>
                 {% autoescape false %}
-                <p class="product-description">Summary: {{ product.descriptionHtml }}</p>
+                <p style="font-size: 14px;
+        font-weight: 500;
+        font-family: sans-serif;">Summary: {{ product.descriptionHtml }}</p>
                 {% endautoescape %}
             </div>
         </div>
     </div>
-    ​
-    <div class="row row_margin_top" >
-        <div class="col-md-6 padding_left_0">
-            <div class="card-top card_padding">
+
+    <div class="row" style="margin-top: 32px;">
+        <div class="col-md-6 " style="padding-left: 0px;">
+            <div  style="border-bottom: 2px solid #333;
+      padding-left: auto;
+      padding-right: auto;
+      min-height: 160px;
+      margin-top: 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      -webkit-transition: .25s box-shadow;
+      transition: .25s box-shadow;  padding: 10px 20px;">
                 {% if detailsStatus == 200: %}
-                    <h4 class="text-center text-primary detail_heading">Book Details</h4>
-                    <div class="row book_detail_margin_top">
+                    <h4 class="text-center text-primary" style="text-transform: uppercase;
+        background-color: #337ab7;
+        font-size: 19px;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 4px;
+        padding: 11px;">Book Details</h4>
+                    <div class="row " style=" margin-top: 20px;">
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">Type:</dt>{{ details.type }}
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">Type:</dt>{{ details.type }}
                         </div>
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">Pages:</dt>{{ details.pages }}
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">Pages:</dt>{{ details.pages }}
                         </div>
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">Publisher:</dt>{{ details.publisher }}
+                            <dt  style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">Publisher:</dt>{{ details.publisher }}
                         </div>
                     </div>
-                    ​
-                    <div class="row book_detail_margin_top">
+
+                    <div class="row" style=" margin-top: 20px;">
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">Language:</dt>{{ details.language }}
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">Language:</dt>{{ details.language }}
                         </div>
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">ISBN-10:</dt>{{ details['ISBN-10'] }}
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">ISBN-10:</dt>{{ details['ISBN-10'] }}
                         </div>
                         <div class="col-md-4">
-                            <dt class="book_detail_heading">ISBN-13:</dt>{{ details['ISBN-13'] }}
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">ISBN-13:</dt>{{ details['ISBN-13'] }}
                         </div>
                     </div>
-                    <div class="row book_detail_margin_top">
+                    <div class="row" style=" margin-top: 20px;">
                         <div class="col-md-12">
-                            <dt class="book_detail_heading">Download:</dt><a class="book_link" href={{ purchase['link'] }} target="_blank">{{ purchase['link'] }}</a>
+                            <dt style="    margin-bottom: 5px;
+            font-weight: 700;
+            font-family: sans-serif;
+            border-left: 3px solid #337abd;
+            padding: 0px 10px 0px;">Download:</dt><a class="book_link" href={{ purchase['link'] }}
+                                target="_blank">{{ purchase['link'] }}</a>
                         </div>
                     </div>
-                    ​
+
                 {% else %}
-                    <h4 class="text-center text-primary detail_heading">Error fetching product details!</h4>
+                    <h4 class="text-center text-primary" style=" text-transform: uppercase;
+        background-color: #337ab7;
+        font-size: 19px;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 4px;
+        padding: 11px;">Error fetching product details!</h4>
                     {% if details: %}
-                        <p class="product-description">{{ details.error }}</p>
+                        <p style=" font-size: 14px;
+        font-weight: 500;
+        font-family: sans-serif;">{{ details.error }}</p>
                     {% endif %}
                 {% endif %}
             </div>
         </div>
-        <div class="col-md-6 padding_right_0">
-            <div class="card-top card_padding">
-                ​
+        <div class="col-md-6" style="padding-right: 0px;">
+            <div style="border-bottom: 2px solid #333;
+      padding-left: auto;
+      padding-right: auto;
+      min-height: 160px;
+      margin-top: 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      -webkit-transition: .25s box-shadow;
+      transition: .25s box-shadow;  padding: 10px 20px;">
+
                 {% if reviewsStatus == 200: %}
-                    <h4 class="text-center text-primary detail_heading">Book Reviews</h4>
+                    <h4 class="text-center text-primary" style=" text-transform: uppercase;
+        background-color: #337ab7;
+        font-size: 19px;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 4px;
+        padding: 11px;">Book Reviews</h4>
                     {% for review in reviews.reviews %}
                         <blockquote>
-                            <p class="product-description">{{ review.text }}</p>
+                            <p style=" font-size: 14px;
+          font-weight: 500;
+          font-family: sans-serif;">{{ review.text }}</p>
                             <small>{{ review.reviewer }}</small>
                             {% if review.rating: %}
                                 {% if review.rating.stars: %}
@@ -176,15 +249,25 @@
                                         {% endfor %}
                                     </font>
                                 {% elif review.rating.error: %}
-                                    <p class="product-description"><i>{{ review.rating.error }}</i></p>
+                                    <p style=" font-size: 14px;
+          font-weight: 500;
+          font-family: sans-serif;"><i>{{ review.rating.error }}</i></p>
                                 {% endif %}
                             {% endif %}
                         </blockquote>
                     {% endfor %}
                 {% else %}
-                    <h4 class="text-center text-primary detail_heading">Error fetching product reviews!</h4>
+                    <h4 class="text-center text-primary" style=" text-transform: uppercase;
+        background-color: #337ab7;
+        font-size: 19px;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 4px;
+        padding: 11px;">Error fetching product reviews!</h4>
                     {% if reviews: %}
-                        <p product-description>{{ reviews.error }}</p>
+                        <p style=" font-size: 14px;
+        font-weight: 500;
+        font-family: sans-serif;">{{ reviews.error }}</p>
                     {% endif %}
                 {% endif %}
             </div>

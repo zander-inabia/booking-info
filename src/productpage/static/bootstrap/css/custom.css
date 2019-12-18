@@ -1,0 +1,58 @@
+.card-top{
+    border-bottom: 2px solid #333;
+    padding-left: auto;
+    padding-right: auto;
+    min-height: 160px;
+    margin-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -webkit-transition: .25s box-shadow;
+    transition: .25s box-shadow;
+}
+.main-heading{
+    margin-bottom: 20px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 30px;
+}
+.product-description {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.row_margin_top{
+    margin-top: 32px;
+}
+.detail_heading {
+    text-transform: uppercase;
+    background-color: #337AB7;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 11px;
+}
+.padding_left_0{
+    padding-left: 0px;
+}
+.padding_right_0{
+    padding-right: 0px;
+}
+.card_padding{
+    padding: 10px 20px;
+}
+.book_detail_margin_top{
+    margin-top: 20px;
+}
+.card_height{
+    height: 305px;
+}
+a.book_link {
+    font-weight: 600;
+    font-family: sans-serif;
+}
+a {
+    font-weight: 600;
+    font-family: sans-serif;
+}

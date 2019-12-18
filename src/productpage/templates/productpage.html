@@ -94,7 +94,15 @@
 ​
 <div class="container">
     <div class="row">
-        <div class="card-top">
+        <div class="card-top" style=" border-bottom: 2px solid #333;
+    padding-left: auto;
+    padding-right: auto;
+    min-height: 160px;
+    margin-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -webkit-transition: .25s box-shadow;
+    transition: .25s box-shadow;">
             <div class="col-md-12">
                 <h2 class="text-center text-primary main-heading">{{ product.title }}</h2>
                 {% autoescape false %}

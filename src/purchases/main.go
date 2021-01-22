@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/go-resty/resty"
+	"github.com/go-resty/resty/v2"
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"

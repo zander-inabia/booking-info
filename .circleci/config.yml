@@ -11,7 +11,7 @@ jobs:
             sudo docker build -t haseebh/purchases:${CIRCLE_BUILD_NUM} .
             sudo docker login -u "$username" -p "$password"
             sudo docker push haseebh/purchases:${CIRCLE_BUILD_NUM}
-            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image_name":"haseebh/purchases","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
+            curl --request POST -H "Content-Type: application/json" -H "X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55SWQiOiI1ZGFhYzRkZjZhOWUyZjAwMWM3ZDgzYjAiLCJleHAiOiIxOTE0NDk0NDA2NTkzIiwiaXNBZG1pbiI6ImZhbHNlIiwiaXNzIjoiQ2xvdWRwbGV4IiwibXlyb2xlcyI6WyJTdXBlci1Vc2VyIiwiVGVhbSBMZWFkIl0sInRlYW1zX3JvbGVzIjp7IkJhY2tlbmQgVGVhbSI6IlRlYW0gTGVhZCJ9LCJ0b2tlbl90eXBlIjoiMSIsInVzZXJuYW1lIjoiaGFzZWViQGNsb3VkcGxleC5pbyJ9.rVN2_DQMB6hIgkyVeaNFuDWDU84XtI0fhdTMoKfhDSk" --data '{"image_name":"haseebh/purchases","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "application_ids":["bookinfo-application-v1"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
       - run:
           name: productpage Build and push Docker image
           command: |
@@ -19,12 +19,4 @@ jobs:
             sudo docker build -t haseebh/productpage:${CIRCLE_BUILD_NUM} .
             sudo docker login -u "$username" -p "$password"
             sudo docker push haseebh/productpage:${CIRCLE_BUILD_NUM}
-            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image":"haseebh/productpage","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
-      - run:
-          name: ratings Build and push Docker image
-          command: |
-            cd src/ratings
-            sudo docker build -t haseebh/ratings-v1:${CIRCLE_BUILD_NUM} .
-            sudo docker login -u "$username" -p "$password"
-            sudo docker push haseebh/ratings-v1:${CIRCLE_BUILD_NUM}
-            curl --request POST -H "Content-Type: application/json" -H "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.CnsKICAidGVhbXNfcm9sZXMiOnt9LAogICJpc3MiOiJjbG91ZHBsZXgiLAogICJleHAiOiIwIiwKICAidXNlcm5hbWUiOiJoYXNlZWJAY2xvdWRwbGV4LmlvIiwKICAiY29tcGFueUlkIjoiNWRhYWM0ZGY2YTllMmYwMDFjN2Q4M2IwIiwKICAiaXNBZG1pbiI6ImZhbHNlIiwKICAidG9rZW5fdHlwZSI6IjEiLAogICJteXJvbGVzIjpbIlN1cGVyLVVzZXIiXQp9CiAgICAgIA.Xx6x2kfL566VBWneB4IU_FDo4qxb8ab9O21lkKmV2n0" --data '{"image_name":"haseebh/ratings-v1","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "project_ids":["bookinginfo-app"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
+            curl --request POST -H "Content-Type: application/json" -H "X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55SWQiOiI1ZGFhYzRkZjZhOWUyZjAwMWM3ZDgzYjAiLCJleHAiOiIxOTE0NDk0NDA2NTkzIiwiaXNBZG1pbiI6ImZhbHNlIiwiaXNzIjoiQ2xvdWRwbGV4IiwibXlyb2xlcyI6WyJTdXBlci1Vc2VyIiwiVGVhbSBMZWFkIl0sInRlYW1zX3JvbGVzIjp7IkJhY2tlbmQgVGVhbSI6IlRlYW0gTGVhZCJ9LCJ0b2tlbl90eXBlIjoiMSIsInVzZXJuYW1lIjoiaGFzZWViQGNsb3VkcGxleC5pbyJ9.rVN2_DQMB6hIgkyVeaNFuDWDU84XtI0fhdTMoKfhDSk" --data '{"image":"haseebh/productpage","tag": "'"${CIRCLE_BUILD_NUM}"'" , "type":"container", "application_ids":["bookinfo-application-v1"]}' https://app.cloudplex.io/rabbit/api/v1/cd/trigger/deployment
